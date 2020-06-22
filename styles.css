@@ -1,0 +1,15 @@
+.container{
+  max-width:1200px;
+}
+.title{
+  margin: 2rem 0;
+}
+.button-row{
+  justify-content:space-around;
+  margin:1rem;
+}
+.display{
+margin:1rem;
+width:1000px;
+height:600px;
+}
