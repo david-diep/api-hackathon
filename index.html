@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Meme Generator</title>
-  <link href="styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -16,17 +16,22 @@
     <button class="btn btn-secondary" id="refresh">Refresh</button>
     <button class="btn btn-secondary" id="change-image">Change Image</button>
     <button class="btn btn-secondary" id="change-text">Change Text</button>
+    <button class="btn btn-secondary" id="custom-text">Customize Text</button>
     <button class="btn btn-secondary" id="save">Save</button>
   </div>
 
-  <div class = "display"></div>
+  <div class = "display">
+    <h2 class="text-field"></h2>
+  </div>
 
   <div class="row bottom-row">
 
   </div>
 
 </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="components/imageHandler.js"></script>
+  <script src="components/textHandler.js"></script>
   <script src ="components/app.js"></script>
   <script src="main.js"></script>
 </body>

@@ -6,10 +6,30 @@
 }
 .button-row{
   justify-content:space-around;
-  margin:1rem;
+  margin-bottom:2rem;
 }
 .display{
-margin:1rem;
+margin: auto;
 width:1000px;
 height:600px;
+position:relative;
+}
+.text-field{
+  position:absolute;
+}
+.align-top-left{
+top:10px;
+left:10px;
+}
+.align-top-right{
+top:10px;
+right:10px;
+}
+.align-bottom-left{
+bottom:10px;
+left:10px;
+}
+.align-bottom-right{
+bottom:10px;
+right:10px;
 }
