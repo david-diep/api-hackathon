@@ -14,7 +14,8 @@ class TextHandler {
     })
   }
   newTextSuccess(data) {
-    console.log(data);
+    var advice = JSON.parse(data).slip.advice;
+    this.textElement.textContent = advice;
   }
   newTextError(error) {
     console.log(error);
