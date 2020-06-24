@@ -1,23 +1,41 @@
 class TextHandler {
   constructor(textElement) {
     this.textElement = textElement;
-    this.newText = this.newText.bind(this);
-    this.newTextSuccess = this.newTextSuccess.bind(this);
+    this.newAdviceText = this.newAdviceText.bind(this);
+    this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
+    this.customText = this.customText.bind(this);
+    //this.newQuoteText = this.newQuoteText.bind(this);
+    //this.newQuoteSuccess = this.newQuoteSuccess.bind(this);
   }
-  newText() {
+  newAdviceText() {
     $.ajax({
       method: "GET",
       url: "https://api.adviceslip.com/advice",
-      success: this.newTextSuccess,
+      success: this.newAdviceSuccess,
       error: this.newTextError
     })
   }
-  newTextSuccess(data) {
+  newAdviceSuccess(data) {
     var advice = JSON.parse(data).slip.advice;
     this.textElement.textContent = advice;
   }
   newTextError(error) {
     console.log(error);
   }
+  customText(string){
+    this.textElement.textContent = string;
+  }
+  // newQuoteText(){
+  //   $.ajax({
+  //     method: "getQuote",
+  //     url: "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en&callback=?",
+  //     success: this.newQuoteSuccess,
+  //     error: this.newTextError
+  //   })
+  // }
+  // newQuoteSuccess(data){
+  //   console.log(data);
+  //   console.log(JSON.parse(data));
+  // }
 }
