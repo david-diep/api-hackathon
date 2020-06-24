@@ -1,4 +1,5 @@
 const imageHandler = new ImageHandler(document.querySelector("div.display"));
-const textHandler = new TextHandler(document.querySelector("h2.meme-text"));
-const app = new App(imageHandler,textHandler);
+const textHandler = new TextHandler(document.querySelector(".text-field"));
+const buttonsContainer = document.querySelector(".buttons-container");
+const app = new App(imageHandler,textHandler,buttonsContainer);
 app.start()
