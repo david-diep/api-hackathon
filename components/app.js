@@ -18,7 +18,7 @@ class App{
   }
 
   start(){
-    this.imageHandler.newAbstractImage();
+    this.imageHandler.newArtImage();
     this.textHandler.newAdviceText();
     this.setButtons();
   }
@@ -36,6 +36,8 @@ class App{
     changeImageButton.addEventListener("click", this.changeImage);
     var changeTextButton = document.querySelector("#change-text");
     changeTextButton.addEventListener("click",this.changeText);
+    var customizeTextButton = document.querySelector("#custom-text");
+    customizeTextButton.addEventListener("click",this.customizeText);
     // back buttons
     var backButton = document.createElement("button");
     backButton.className = "btn btn-success";
@@ -90,7 +92,31 @@ class App{
     this.textRow.appendChild(customText);
     this.textRow.appendChild(customButton);
     //set the customize text row buttons
-
+    var blackWhiteButton = document.createElement("button");
+    var whiteBlackButton = document.createElement("button");
+    var pureWhiteButton = document.createElement("button");
+    var pureBlackButton = document.createElement("button");
+    var sizeButton = document.createElement("button");
+    blackWhiteButton.textContent = "Black Interior Text";
+    blackWhiteButton.className = "btn btn-dark";
+    blackWhiteButton.addEventListener("click", this.textHandler.blackInterior);
+    whiteBlackButton.textContent = "White Interior Text";
+    whiteBlackButton.className = "btn btn-dark";
+    whiteBlackButton.addEventListener("click", this.textHandler.whiteInterior);
+    pureWhiteButton.textContent = "White Only Text";
+    pureWhiteButton.className = "btn btn-dark";
+    pureWhiteButton.addEventListener("click", this.textHandler.pureWhite);
+    pureBlackButton.textContent = "Black Only Text";
+    pureBlackButton.className = "btn btn-dark";
+    pureBlackButton.addEventListener("click", this.textHandler.pureBlack);
+    sizeButton.textContent = "Change Size"
+    sizeButton.className = "btn btn-info";
+    sizeButton.addEventListener("click", this.textHandler.toggleSize);
+    this.customizeRow.appendChild(blackWhiteButton);
+    this.customizeRow.appendChild(whiteBlackButton);
+    this.customizeRow.appendChild(pureWhiteButton);
+    this.customizeRow.appendChild(pureBlackButton);
+    this.customizeRow.appendChild(sizeButton);
   }
 
   changeImage(){
@@ -107,11 +133,7 @@ class App{
     this.toggleTopRow();
     this.customizeRow.classList.remove("d-none");
   }
-  // clearBottomRow(){
-  //   while(this.bottomRow.lastChild){
-  //     this.bottomRow.removeChild(this.bottomRow.lastChild);
-  //   }
-  // }
+
   toggleTopRow(){
     //alternates between making the main buttons visible
     //and making the other buttons invisible
@@ -132,4 +154,6 @@ class App{
     this.textHandler.customText(textInput.value);
     textInput.value =""
   }
+
+
 }

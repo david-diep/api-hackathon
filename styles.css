@@ -7,7 +7,7 @@ body{
 .title{
   margin: 2rem 0;
 }
-.button-row, .text-row{
+.button-row, .text-row, .customize-row{
   justify-content:space-evenly;
   margin-bottom:2rem;
 }
@@ -75,4 +75,11 @@ bottom:10px;
 }
 .pure-black-text{
   color:black;
+}
+
+.small{
+  font-size: 2rem;
+}
+.large{
+  font-size: 3.5rem;
 }

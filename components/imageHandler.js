@@ -45,11 +45,10 @@ class ImageHandler{
 
   toggleCoverContain(){
     if(this.imageElement.classList.contains("cover")){
-      this.imageElement.classList.remove("cover");
-      this.imageElement.classList.add("contain");
+      this.imageElement.classList.replace("cover","contain");
+
     } else{
-      this.imageElement.classList.remove("contain");
-      this.imageElement.classList.add("cover");
+      this.imageElement.classList.replace("contain", "cover");
     }
   }
 }

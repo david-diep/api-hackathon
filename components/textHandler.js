@@ -6,8 +6,11 @@ class TextHandler {
     this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
     this.customText = this.customText.bind(this);
-    //this.newQuoteText = this.newQuoteText.bind(this);
-    //this.newQuoteSuccess = this.newQuoteSuccess.bind(this);
+    this.toggleSize = this.toggleSize.bind(this);
+    this.pureWhite = this.pureWhite.bind(this);
+    this.pureBlack = this.pureBlack.bind(this);
+    this.blackInterior = this.blackInterior.bind(this);
+    this.whiteInterior = this.whiteInterior.bind(this);
   }
   newAdviceText() {
     $.ajax({
@@ -18,7 +21,7 @@ class TextHandler {
     })
   }
   newAdviceSuccess(data) {
-    var advice = JSON.parse(data).slip.advice;
+    const advice = JSON.parse(data).slip.advice;
     this.memeText.textContent = advice;
   }
   newTextError(error) {
@@ -27,16 +30,33 @@ class TextHandler {
   customText(string){
     this.memeText.textContent = string;
   }
-  // newQuoteText(){
-  //   $.ajax({
-  //     method: "getQuote",
-  //     url: "https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en&callback=?",
-  //     success: this.newQuoteSuccess,
-  //     error: this.newTextError
-  //   })
-  // }
-  // newQuoteSuccess(data){
-  //   console.log(data);
-  //   console.log(JSON.parse(data));
-  // }
+  toggleSize(){
+    if (this.memeText.classList.contains("small")) {
+      this.memeText.classList.replace("small","large");
+    } else {
+      this.memeText.classList.replace("large", "small");
+    }
+  }
+  pureWhite(){
+    this.clearColor();
+    this.memeText.classList.add("pure-white-text");
+  }
+  pureBlack(){
+    this.clearColor();
+    this.memeText.classList.add("pure-black-text");
+  }
+  blackInterior(){
+    this.clearColor();
+    this.memeText.classList.add("black-text");
+  }
+  whiteInterior(){
+    this.clearColor();
+    this.memeText.classList.add("white-text");
+  }
+  clearColor(){
+    const colorList=["white-text","black-text","pure-black-text","pure-white-text"];
+    for(let i=0;i<colorList.length;i++){
+      if (this.memeText.classList.contains(colorList[i])) this.memeText.classList.remove(colorList[i]);
+    }
+  }
 }
