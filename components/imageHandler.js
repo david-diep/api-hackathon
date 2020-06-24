@@ -7,6 +7,7 @@ class ImageHandler{
     this.newAbstractImage = this.newAbstractImage.bind(this);
     this.newArtImage = this.newArtImage.bind(this);
     this.newAnimeImage = this.newAnimeImage.bind(this);
+    this.toggleCoverContain = this.toggleCoverContain.bind(this);
     this.frontURL = "https://api.giphy.com/v1/gifs/random?api_key=CNytBS8UgzfMHNmmTQPrTwE31S88tvGC"
 
   }
@@ -21,7 +22,6 @@ class ImageHandler{
     })
   }
   newImageSuccess(data){
-    //console.log(data);
     this.imageElement.style.backgroundImage = "url("+data.data.image_url+")";
   }
   newImageError(error){
@@ -41,5 +41,15 @@ class ImageHandler{
   newAnimeImage(){
     var url = this.frontURL + "&tag=anime&rating=PG";
     this.newImage(url);
+  }
+
+  toggleCoverContain(){
+    if(this.imageElement.classList.contains("cover")){
+      this.imageElement.classList.remove("cover");
+      this.imageElement.classList.add("contain");
+    } else{
+      this.imageElement.classList.remove("contain");
+      this.imageElement.classList.add("cover");
+    }
   }
 }

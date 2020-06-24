@@ -24,15 +24,21 @@ width:1000px;
 height:600px;
 background-position:center;
 background-repeat: no-repeat;
-background-size: cover;
-position:relative;
 background-color:black;
 }
+.cover{
+  background-size: cover;
+}
+.contain{
+  background-size: contain;
+}
 .text-field{
-  position:absolute;
+  display:flex;
   width:1000px;
+  height:600px;
 }
 .meme-text{
+margin:1rem;
 width:75%;
 }
 .align-left{
@@ -46,6 +52,10 @@ top:10px;
 }
 .align-bottom{
 bottom:10px;
+}
+.align-center{
+  text-align: center;
+  justify-content: center;
 }
 
 .white-text{

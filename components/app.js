@@ -56,6 +56,9 @@ class App{
     var animeButton = document.createElement("button");
     var abstractButton = document.createElement("button");
     var artButton = document.createElement("button");
+    var toggleButton = document.createElement("button");
+    toggleButton.textContent = "Toggle GIF Fit";
+    toggleButton.className = "btn btn-info";
     animeButton.className = "btn btn-dark";
     animeButton.textContent = "Anime GIF";
     abstractButton.className = "btn btn-dark";
@@ -65,9 +68,11 @@ class App{
     animeButton.addEventListener("click", this.imageHandler.newAnimeImage);
     abstractButton.addEventListener("click", this.imageHandler.newAbstractImage);
     artButton.addEventListener("click", this.imageHandler.newArtImage);
+    toggleButton.addEventListener("click", this.imageHandler.toggleCoverContain);
     this.imageRow.appendChild(abstractButton);
     this.imageRow.appendChild(animeButton);
     this.imageRow.appendChild(artButton);
+    this.imageRow.appendChild(toggleButton);
     // set the text row buttons
     var adviceButton = document.createElement("button");
     var customButton = document.createElement("button");
@@ -77,13 +82,13 @@ class App{
     customText.className = "w-50";
     adviceButton.className = "btn btn-dark";
     adviceButton.textContent = "Use Advice";
-    customButton.className = "btn btn-dark";
+    customButton.className = "btn btn-warning";
     customButton.textContent = "Use Custom Text";
     adviceButton.addEventListener("click", this.textHandler.newAdviceText);
     customButton.addEventListener("click",this.submitCustomText);
     this.textRow.appendChild(adviceButton);
-    this.textRow.appendChild(customButton);
     this.textRow.appendChild(customText);
+    this.textRow.appendChild(customButton);
     //set the customize text row buttons
 
   }
