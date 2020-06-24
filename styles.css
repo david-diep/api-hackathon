@@ -7,10 +7,17 @@ body{
 .title{
   margin: 2rem 0;
 }
-.button-row{
+.button-row, .text-row{
   justify-content:space-evenly;
   margin-bottom:2rem;
 }
+.image-row{
+  margin-left: 3rem;
+}
+.image-row > *{
+  margin: 0 2rem 2rem;
+}
+
 .display{
 margin: auto;
 width:1000px;
@@ -58,8 +65,4 @@ bottom:10px;
 }
 .pure-black-text{
   color:black;
-}
-
-.bottom-row > *{
-  margin: 2rem;
 }

@@ -1,77 +1,130 @@
 class App{
-  constructor(imageHandler,textHandler){
+  constructor(imageHandler,textHandler,buttonsContainer){
     this.imageHandler = imageHandler;
     this.textHandler = textHandler;
-    this.bottomRow = document.querySelector(".bottom-row");
+    this.buttonsContainer = buttonsContainer;
+    this.buttonRow = buttonsContainer.querySelector(".button-row");
+    this.imageRow = buttonsContainer.querySelector(".image-row");
+    this.textRow = buttonsContainer.querySelector(".text-row");
+    this.customizeRow = buttonsContainer.querySelector(".customize-row")
     this.start = this.start.bind(this);
     this.refresh = this.refresh.bind(this);
-    this.setTopButtons = this.setTopButtons.bind(this);
+    this.setButtons = this.setButtons.bind(this);
     this.changeImage = this.changeImage.bind(this);
     this.changeText = this.changeText.bind(this);
-    this.clearBottomRow = this.clearBottomRow.bind(this);
+    this.toggleTopRow = this.toggleTopRow.bind(this);
     this.customizeText = this.customizeText.bind(this);
+    this.submitCustomText = this.submitCustomText.bind(this);
   }
 
   start(){
     this.imageHandler.newAbstractImage();
     this.textHandler.newAdviceText();
-    this.setTopButtons();
+    this.setButtons();
   }
 
   refresh(){
-    this.clearBottomRow();
     this.imageHandler.newAbstractImage();
     this.textHandler.newAdviceText();
   }
 
-  setTopButtons(){
+  setButtons(){
+    //set the main buttons
     var refresh = document.querySelector("#refresh");
     refresh.addEventListener("click",this.refresh);
     var changeImageButton = document.querySelector("#change-image");
     changeImageButton.addEventListener("click", this.changeImage);
     var changeTextButton = document.querySelector("#change-text");
     changeTextButton.addEventListener("click",this.changeText);
-  }
-
-  changeImage(){
-    this.clearBottomRow();
+    // back buttons
+    var backButton = document.createElement("button");
+    backButton.className = "btn btn-success";
+    var imageBack = backButton.cloneNode();
+    var textBack = backButton.cloneNode();
+    var customizeBack = backButton.cloneNode();
+    imageBack.textContent = "Go Back";
+    textBack.textContent = "Go Back";
+    customizeBack.textContent = "Go Back";
+    imageBack.addEventListener("click", this.toggleTopRow);
+    textBack.addEventListener("click",this.toggleTopRow);
+    customizeBack.addEventListener("click",this.toggleTopRow);
+    this.imageRow.appendChild(imageBack);
+    this.textRow.appendChild(textBack);
+    this.customizeRow.appendChild(customizeBack);
+    //set the image row buttons
+    //todo: set background to contain/cover
     var animeButton = document.createElement("button");
     var abstractButton = document.createElement("button");
     var artButton = document.createElement("button");
-    animeButton.className ="btn btn-dark";
+    animeButton.className = "btn btn-dark";
     animeButton.textContent = "Anime GIF";
-    abstractButton.className ="btn btn-dark";
+    abstractButton.className = "btn btn-dark";
     abstractButton.textContent = "Abstract GIF";
-    artButton.className ="btn btn-dark";
+    artButton.className = "btn btn-dark";
     artButton.textContent = "Art GIF";
     animeButton.addEventListener("click", this.imageHandler.newAnimeImage);
     abstractButton.addEventListener("click", this.imageHandler.newAbstractImage);
     artButton.addEventListener("click", this.imageHandler.newArtImage);
-    this.bottomRow.appendChild(abstractButton);
-    this.bottomRow.appendChild(animeButton);
-    this.bottomRow.appendChild(artButton);
-  }
-
-  changeText() {
-    this.clearBottomRow();
+    this.imageRow.appendChild(abstractButton);
+    this.imageRow.appendChild(animeButton);
+    this.imageRow.appendChild(artButton);
+    // set the text row buttons
     var adviceButton = document.createElement("button");
     var customButton = document.createElement("button");
+    var customText = document.createElement("input");
+    customText.placeholder = "Type your custom text here!";
+    customText.id = "text-input";
+    customText.className = "w-50";
     adviceButton.className = "btn btn-dark";
     adviceButton.textContent = "Use Advice";
     customButton.className = "btn btn-dark";
-    customButton.textContent = "Use Quote";
-    adviceButton.addEventListener("click",this.textHandler.newAdviceText);
-    //customButton.addEventListener("click",this.textHandler.newQuoteText);
-    this.bottomRow.appendChild(adviceButton);
-    this.bottomRow.appendChild(customButton);
+    customButton.textContent = "Use Custom Text";
+    adviceButton.addEventListener("click", this.textHandler.newAdviceText);
+    customButton.addEventListener("click",this.submitCustomText);
+    this.textRow.appendChild(adviceButton);
+    this.textRow.appendChild(customButton);
+    this.textRow.appendChild(customText);
+    //set the customize text row buttons
+
+  }
+
+  changeImage(){
+    this.toggleTopRow();
+    this.imageRow.classList.remove("d-none");
+  }
+
+  changeText() {
+    this.toggleTopRow();
+    this.textRow.classList.remove("d-none");
   }
 
   customizeText(){
-    this.clearBottomRow();
+    this.toggleTopRow();
+    this.customizeRow.classList.remove("d-none");
   }
-  clearBottomRow(){
-    while(this.bottomRow.lastChild){
-      this.bottomRow.removeChild(this.bottomRow.lastChild);
+  // clearBottomRow(){
+  //   while(this.bottomRow.lastChild){
+  //     this.bottomRow.removeChild(this.bottomRow.lastChild);
+  //   }
+  // }
+  toggleTopRow(){
+    //alternates between making the main buttons visible
+    //and making the other buttons invisible
+    if(this.buttonRow.classList.contains("d-none")){
+      this.buttonRow.classList.remove("d-none");
+
+      if (!this.imageRow.classList.contains("d-none")) this.imageRow.classList.add("d-none")
+      if (!this.textRow.classList.contains("d-none")) this.textRow.classList.add("d-none")
+      if (!this.customizeRow.classList.contains("d-none")) this.customizeRow.classList.add("d-none")
+
+    } else{
+      this.buttonRow.classList.add("d-none");
     }
+  }
+
+  submitCustomText(){
+    var textInput = this.buttonsContainer.querySelector("#text-input");
+    this.textHandler.customText(textInput.value);
+    textInput.value =""
   }
 }

@@ -16,12 +16,24 @@
     <img src="components/giphy.png">
     <img src="components/advice-slip.png">
   </h1>
-  <div class="row button-row">
-    <button class="btn btn-secondary" id="refresh">Refresh</button>
-    <button class="btn btn-secondary" id="change-image">Change Image</button>
-    <button class="btn btn-secondary" id="change-text">Change Text</button>
-    <button class="btn btn-secondary" id="custom-text">Customize Text</button>
-    <button class="btn btn-primary" id="save">Save</button>
+
+  <div class="buttons-container">
+    <div class="row button-row">
+      <button class="btn btn-secondary" id="refresh">Refresh</button>
+      <button class="btn btn-secondary" id="change-image">Change Image</button>
+      <button class="btn btn-secondary" id="change-text">Change Text</button>
+      <button class="btn btn-secondary" id="custom-text">Customize Text</button>
+      <button class="btn btn-primary" id="save">Save</button>
+    </div>
+    <div class="row bottom-row image-row d-none">
+
+    </div>
+    <div class="row bottom-row text-row d-none">
+
+    </div>
+    <div class="row bottom-row customize-row d-none">
+
+    </div>
   </div>
 
   <div class = "display border border-dark">
@@ -31,9 +43,7 @@
 
   </div>
 
-  <div class="row bottom-row">
 
-  </div>
 
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

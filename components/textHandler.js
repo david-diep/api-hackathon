@@ -1,6 +1,7 @@
 class TextHandler {
   constructor(textElement) {
     this.textElement = textElement;
+    this.memeText = this.textElement.querySelector(".meme-text")
     this.newAdviceText = this.newAdviceText.bind(this);
     this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
@@ -18,13 +19,13 @@ class TextHandler {
   }
   newAdviceSuccess(data) {
     var advice = JSON.parse(data).slip.advice;
-    this.textElement.textContent = advice;
+    this.memeText.textContent = advice;
   }
   newTextError(error) {
     console.log(error);
   }
   customText(string){
-    this.textElement.textContent = string;
+    this.memeText.textContent = string;
   }
   // newQuoteText(){
   //   $.ajax({
