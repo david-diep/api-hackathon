@@ -29,7 +29,7 @@ class App{
   }
 
   setButtons(){
-    //set the main buttons
+    //set the buttons on the main row
     var refresh = document.querySelector("#refresh");
     refresh.addEventListener("click",this.refresh);
     var changeImageButton = document.querySelector("#change-image");
@@ -38,7 +38,7 @@ class App{
     changeTextButton.addEventListener("click",this.changeText);
     var customizeTextButton = document.querySelector("#custom-text");
     customizeTextButton.addEventListener("click",this.customizeText);
-    // back buttons
+    // back buttons for all rows
     var backButton = document.createElement("button");
     backButton.className = "btn btn-success";
     var imageBack = backButton.cloneNode();
@@ -54,7 +54,6 @@ class App{
     this.textRow.appendChild(textBack);
     this.customizeRow.appendChild(customizeBack);
     //set the image row buttons
-    //todo: set background to contain/cover
     var animeButton = document.createElement("button");
     var abstractButton = document.createElement("button");
     var artButton = document.createElement("button");
@@ -119,23 +118,23 @@ class App{
     this.customizeRow.appendChild(sizeButton);
   }
 
-  changeImage(){
+  changeImage(){ //replaces main row with the image row buttons
     this.toggleTopRow();
     this.imageRow.classList.remove("d-none");
   }
 
-  changeText() {
+  changeText() { //replaces main row with the change row buttons
     this.toggleTopRow();
     this.textRow.classList.remove("d-none");
   }
 
-  customizeText(){
+  customizeText() { //replaces main row with the customize text row buttons
     this.toggleTopRow();
     this.customizeRow.classList.remove("d-none");
   }
 
   toggleTopRow(){
-    //alternates between making the main buttons visible
+    //alternates between making the main buttons visible/invisible
     //and making the other buttons invisible
     if(this.buttonRow.classList.contains("d-none")){
       this.buttonRow.classList.remove("d-none");
@@ -149,7 +148,7 @@ class App{
     }
   }
 
-  submitCustomText(){
+  submitCustomText(){ //takes the value from the textline in change text row and uses it in the meme
     var textInput = this.buttonsContainer.querySelector("#text-input");
     this.textHandler.customText(textInput.value);
     textInput.value =""
