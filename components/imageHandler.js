@@ -29,17 +29,17 @@ class ImageHandler{
   }
 
   newAbstractImage(){
-    var url = this.frontURL + "&tag=trippy&rating=PG";
+    const url = this.frontURL + "&tag=trippy&rating=PG";
     this.newImage(url);
   }
 
   newArtImage(){
-    var url = this.frontURL + "&tag=art&rating=PG";
+    const url = this.frontURL + "&tag=art&rating=PG";
     this.newImage(url);
   }
 
   newAnimeImage(){
-    var url = this.frontURL + "&tag=anime&rating=PG";
+    const url = this.frontURL + "&tag=anime&rating=PG";
     this.newImage(url);
   }
 

@@ -2,6 +2,7 @@ class TextHandler {
   constructor(textElement) {
     this.textElement = textElement;
     this.memeText = this.textElement.querySelector(".meme-text")
+    this.textField = this.textElement.querySelector(".text-field")
     this.newAdviceText = this.newAdviceText.bind(this);
     this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
@@ -11,6 +12,7 @@ class TextHandler {
     this.pureBlack = this.pureBlack.bind(this);
     this.blackInterior = this.blackInterior.bind(this);
     this.whiteInterior = this.whiteInterior.bind(this);
+    this.toggleBottomPosition = this.toggleBottomPosition.bind(this);
   }
   newAdviceText() {
     $.ajax({
@@ -30,10 +32,19 @@ class TextHandler {
   customText(string){
     this.memeText.textContent = string;
   }
+  toggleBottomPosition(){
+    if (this.textField.classList.contains("align-bottom")) {
+      this.textField.classList.remove("align-bottom");
+    }  else {
+      this.textField.classList.add("align-bottom");
+    }
+  }
   toggleSize(){
     if (this.memeText.classList.contains("small")) {
-      this.memeText.classList.replace("small","large");
-    } else {
+      this.memeText.classList.replace("small","medium");
+    } else if (this.memeText.classList.contains("medium")){
+      this.memeText.classList.replace("medium", "large");
+    }else {
       this.memeText.classList.replace("large", "small");
     }
   }

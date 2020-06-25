@@ -5,26 +5,28 @@ body{
   max-width:1200px;
 }
 .title{
-  margin: 2rem 0;
+  margin-top: 2rem;
+  text-align: center;
 }
-.button-row, .text-row, .customize-row{
+.credit-row{
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+.button-row, .text-row, .customize-row,.image-row,.position-row{
   justify-content:space-evenly;
   margin-bottom:2rem;
 }
-.image-row{
-  margin-left: 3rem;
-}
-.image-row > *{
-  margin: 0 2rem 2rem;
-}
+
+
 
 .display{
 margin: auto;
-width:1000px;
-height:600px;
 background-position:center;
 background-repeat: no-repeat;
 background-color:black;
+display:flex;
+justify-content:center;
+box-shadow: 7px 7px;
 }
 .cover{
   background-size: cover;
@@ -32,30 +34,28 @@ background-color:black;
 .contain{
   background-size: contain;
 }
-.text-field{
-  display:flex;
-  width:1000px;
-  height:600px;
-}
+
 .meme-text{
 margin:1rem;
-width:75%;
 }
 .align-left{
-left:20px;
+flex-direction:row;
 }
 .align-right{
-right:20px;
+flex-direction:row-reverse;
 }
 .align-top{
-top:10px;
-}
-.align-bottom{
-bottom:10px;
+flex-direction:column;
 }
 .align-center{
+  justify-content:center;
+}
+.align-bottom{
+flex-direction:column-reverse;
+}
+
+.center-text{
   text-align: center;
-  justify-content: center;
 }
 
 .white-text{
@@ -78,8 +78,64 @@ bottom:10px;
 }
 
 .small{
-  font-size: 2rem;
+  font-size: 2.5rem;
+}
+.medium{
+  font-size: 3rem;
 }
 .large{
   font-size: 3.5rem;
+}
+@media (min-width:1050px){
+  .display{
+    width:1000px;
+    height:600px;
+  }
+
+}
+
+@media (max-width:1050px) and (min-width:500px){
+/* everything below is for mobile screens */
+  .title{
+    margin-top:0;
+}
+  .display{
+    width:99%;
+    min-height:500px;
+  }
+  .container{
+    height:100%;
+    min-height:600px;
+  }
+
+}
+
+@media (max-width:500px){
+    .display{
+    width:99%;
+    min-height:400px;
+  }
+  .container{
+    height:100%;
+    min-height:600px;
+  }
+    .title{
+    margin-top:0;
+}
+  .credit-row{
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.button-row, .text-row, .customize-row,.image-row,.position-row{
+  margin-bottom:1rem;
+}
+.small{
+  font-size: 1.5rem;
+}
+.medium{
+  font-size: 1.75rem;
+}
+.large{
+  font-size: 2rem;
+}
 }

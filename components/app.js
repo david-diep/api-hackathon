@@ -7,6 +7,7 @@ class App{
     this.imageRow = buttonsContainer.querySelector(".image-row");
     this.textRow = buttonsContainer.querySelector(".text-row");
     this.customizeRow = buttonsContainer.querySelector(".customize-row")
+    this.positionRow = buttonsContainer.querySelector(".position-row")
     this.start = this.start.bind(this);
     this.refresh = this.refresh.bind(this);
     this.setButtons = this.setButtons.bind(this);
@@ -15,6 +16,7 @@ class App{
     this.toggleTopRow = this.toggleTopRow.bind(this);
     this.customizeText = this.customizeText.bind(this);
     this.submitCustomText = this.submitCustomText.bind(this);
+    this.textLocation = this.textLocation.bind(this);
   }
 
   start(){
@@ -30,20 +32,22 @@ class App{
 
   setButtons(){
     //set the buttons on the main row
-    var refresh = document.querySelector("#refresh");
+    const refresh = document.querySelector("#refresh");
     refresh.addEventListener("click",this.refresh);
-    var changeImageButton = document.querySelector("#change-image");
+    const changeImageButton = this.buttonsContainer.querySelector("#change-image");
     changeImageButton.addEventListener("click", this.changeImage);
-    var changeTextButton = document.querySelector("#change-text");
+    const changeTextButton = this.buttonsContainer.querySelector("#change-text");
     changeTextButton.addEventListener("click",this.changeText);
-    var customizeTextButton = document.querySelector("#custom-text");
+    const customizeTextButton = this.buttonsContainer.querySelector("#custom-text");
     customizeTextButton.addEventListener("click",this.customizeText);
+    const textLocationButton = this.buttonsContainer.querySelector("#text-location");
+    //textLocationButton.addEventListener("click");
     // back buttons for all rows
-    var backButton = document.createElement("button");
+    const backButton = document.createElement("button");
     backButton.className = "btn btn-success";
-    var imageBack = backButton.cloneNode();
-    var textBack = backButton.cloneNode();
-    var customizeBack = backButton.cloneNode();
+    const imageBack = backButton.cloneNode();
+    const textBack = backButton.cloneNode();
+    const customizeBack = backButton.cloneNode();
     imageBack.textContent = "Go Back";
     textBack.textContent = "Go Back";
     customizeBack.textContent = "Go Back";
@@ -54,10 +58,10 @@ class App{
     this.textRow.appendChild(textBack);
     this.customizeRow.appendChild(customizeBack);
     //set the image row buttons
-    var animeButton = document.createElement("button");
-    var abstractButton = document.createElement("button");
-    var artButton = document.createElement("button");
-    var toggleButton = document.createElement("button");
+    const animeButton = document.createElement("button");
+    const abstractButton = document.createElement("button");
+    const artButton = document.createElement("button");
+    const toggleButton = document.createElement("button");
     toggleButton.textContent = "Toggle GIF Fit";
     toggleButton.className = "btn btn-info";
     animeButton.className = "btn btn-dark";
@@ -75,9 +79,13 @@ class App{
     this.imageRow.appendChild(artButton);
     this.imageRow.appendChild(toggleButton);
     // set the text row buttons
-    var adviceButton = document.createElement("button");
-    var customButton = document.createElement("button");
-    var customText = document.createElement("input");
+    const adviceButton = document.createElement("button");
+    const customButton = document.createElement("button");
+    const positionButton =document.createElement("button");
+    const customText = document.createElement("input");
+    positionButton.textContent = "Change Text Position";
+    positionButton.className = "btn btn-info";
+    positionButton.addEventListener("click",this.textHandler.toggleBottomPosition);
     customText.placeholder = "Type your custom text here!";
     customText.id = "text-input";
     customText.className = "w-50";
@@ -88,14 +96,15 @@ class App{
     adviceButton.addEventListener("click", this.textHandler.newAdviceText);
     customButton.addEventListener("click",this.submitCustomText);
     this.textRow.appendChild(adviceButton);
+    this.textRow.appendChild(positionButton);
     this.textRow.appendChild(customText);
     this.textRow.appendChild(customButton);
     //set the customize text row buttons
-    var blackWhiteButton = document.createElement("button");
-    var whiteBlackButton = document.createElement("button");
-    var pureWhiteButton = document.createElement("button");
-    var pureBlackButton = document.createElement("button");
-    var sizeButton = document.createElement("button");
+    const blackWhiteButton = document.createElement("button");
+    const whiteBlackButton = document.createElement("button");
+    const pureWhiteButton = document.createElement("button");
+    const pureBlackButton = document.createElement("button");
+    const sizeButton = document.createElement("button");
     blackWhiteButton.textContent = "Black Interior Text";
     blackWhiteButton.className = "btn btn-dark";
     blackWhiteButton.addEventListener("click", this.textHandler.blackInterior);
@@ -133,6 +142,11 @@ class App{
     this.customizeRow.classList.remove("d-none");
   }
 
+  textLocation(){
+    this.toggleTopRow();
+    this.locationRow.classList.remove("d-none");
+  }
+
   toggleTopRow(){
     //alternates between making the main buttons visible/invisible
     //and making the other buttons invisible
@@ -149,7 +163,7 @@ class App{
   }
 
   submitCustomText(){ //takes the value from the textline in change text row and uses it in the meme
-    var textInput = this.buttonsContainer.querySelector("#text-input");
+    const textInput = this.buttonsContainer.querySelector("#text-input");
     this.textHandler.customText(textInput.value);
     textInput.value =""
   }
