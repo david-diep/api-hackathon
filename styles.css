@@ -1,6 +1,22 @@
 body{
   background-color:lightgray;
 }
+#image-display{
+  width:90%;
+  height:80%;
+  background-color:black;
+  position:absolute;
+  margin:0 5% 5% 5%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+}
+#image-display > canvas{
+  margin:auto;
+}
+#modal-button{
+  margin:5px;
+}
 .container{
   max-width:1200px;
 }
@@ -23,7 +39,7 @@ background-position:center;
 background-repeat: no-repeat;
 background-color:black;
 display:flex;
-box-shadow: 7px 7px;
+
 }
 
 .cover{
@@ -69,16 +85,14 @@ flex-direction:column-reverse;
 }
 
 .white-text{
-  color: black;
-  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  color: white;
+  text-shadow: 1px 1px 10px black,
+              0px 0px 7px black;
 }
 .black-text{
-  color: white;
-  -webkit-text-fill-color: black; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
+  color: black;
+  text-shadow: 1px 1px 10px white,
+                0px 0px 7px white;
 }
 .pure-white-text{
   color:white;

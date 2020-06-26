@@ -57,22 +57,22 @@ class TextHandler {
   }
   resetPosition(){
     //reset horizontal position
-    if (this.textElement.classList.contains("align-bottom")) this.textField.classList.replace("align-bottom", "align-top");
+    if (this.textElement.classList.contains("align-left")) this.textElement.classList.replace("align-left", "align-center");
+    if (this.textElement.classList.contains("align-right")) this.textElement.classList.replace("align-right", "align-center");
     //reset vertical position
     if (this.textField.classList.contains("align-center")) this.textField.classList.remove("align-center");
     if (this.textField.classList.contains("align-bottom")) this.textField.classList.replace("align-bottom", "align-top");
     //reset text alignment
-
+    if (this.memeText.classList.contains("left-text")) this.memeText.classList.replace("left-text","center-text")
+    if (this.memeText.classList.contains("right-text")) this.memeText.classList.replace("right-text", "center-text")
   }
   toggleTextAlignment(){
     if(this.memeText.classList.contains("center-text")){
       this.memeText.classList.replace("center-text","left-text");
     } else if (this.memeText.classList.contains("left-text")) {
       this.memeText.classList.replace("left-text", "right-text");
-    } else if (this.memeText.classList.contains("right-text")) {
-      this.memeText.classList.replace("right-text", "justify-text");
-    }else {
-      this.memeText.classList.replace("justify-text", "center-text");
+    } else {
+      this.memeText.classList.replace("right-text", "center-text");
     }
   }
 

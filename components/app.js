@@ -17,6 +17,7 @@ class App{
     this.customizeText = this.customizeText.bind(this);
     this.submitCustomText = this.submitCustomText.bind(this);
     this.textLocation = this.textLocation.bind(this);
+    this.clearModal = this.clearModal.bind(this);
   }
 
   start(){
@@ -29,10 +30,19 @@ class App{
     this.imageHandler.newAbstractImage();
     this.textHandler.newAdviceText();
   }
-
+  clearModal(){
+    const modal = document.querySelector("#image-display");
+    modal.classList.add("d-none");
+    modal.removeChild(modal.lastChild);
+  }
   setButtons(){
+    //modal button
+    const hideButton = document.querySelector("#modal-button")
+    hideButton.addEventListener("click",this.clearModal);
+    hideButton.textContent ="Go Back";
+    hideButton.className = "btn btn-light"
     //set the buttons on the main row
-    const refresh = document.querySelector("#refresh");
+    const refresh = this.buttonsContainer.querySelector("#refresh");
     refresh.addEventListener("click",this.refresh);
     const changeImageButton = this.buttonsContainer.querySelector("#change-image");
     changeImageButton.addEventListener("click", this.changeImage);
@@ -42,6 +52,8 @@ class App{
     customizeTextButton.addEventListener("click",this.customizeText);
     const textLocationButton = this.buttonsContainer.querySelector("#text-location");
     textLocationButton.addEventListener("click", this.textLocation);
+    const saveButton = this.buttonsContainer.querySelector("#save");
+    saveButton.addEventListener("click",this.imageHandler.takeScreenshot);
     // back buttons for all rows
     const backButton = document.createElement("button");
     backButton.className = "btn btn-success";
@@ -140,7 +152,7 @@ class App{
     verticalButton.addEventListener("click",this.textHandler.toggleVerticalPosition);
     horizontalButton.addEventListener("click",this.textHandler.toggleHorizontalPosition);
     resetButton.addEventListener("click",this.textHandler.resetPosition);
-    textAlignButton.addEventListener("click".this.textHandler.toggleTextAlignment);
+    textAlignButton.addEventListener("click",this.textHandler.toggleTextAlignment);
     this.positionRow.appendChild(verticalButton);
     this.positionRow.appendChild(horizontalButton);
     this.positionRow.appendChild(textAlignButton);

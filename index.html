@@ -11,6 +11,11 @@
 </head>
 
 <body>
+
+<div id="image-display" class="d-none">
+  <div class="d-flex flex-row-reverse "><button id="modal-button"></button></div>
+</div>
+
 <div class="container">
   <h1 class="title">Meme Generator</h1>
   <div class="credit-row row">
@@ -40,9 +45,9 @@
 
   <div class = "display border border-dark cover align-center">
     <div class="text-field d-flex w-75 align-top">
-      <div class="center-text w-100">
-        <span class="meme-text white-text small"></span>
-      </div>
+
+        <div class="meme-text white-text small center-text w-100"></div>
+
     </div>
   </div>
 
@@ -50,7 +55,7 @@
 
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="components/imageHandler.js"></script>
   <script src="components/textHandler.js"></script>
   <script src ="components/app.js"></script>

@@ -9,6 +9,7 @@ class ImageHandler{
     this.newAnimeImage = this.newAnimeImage.bind(this);
     this.toggleCoverContain = this.toggleCoverContain.bind(this);
     this.frontURL = "https://api.giphy.com/v1/gifs/random?api_key=CNytBS8UgzfMHNmmTQPrTwE31S88tvGC"
+    this.takeScreenshot = this.takeScreenshot.bind(this)
 
   }
 
@@ -50,5 +51,13 @@ class ImageHandler{
     } else{
       this.imageElement.classList.replace("contain", "cover");
     }
+  }
+
+  takeScreenshot(){
+    const modal = document.querySelector("#image-display")
+    let print = html2canvas(this.imageElement, { allowTaint:true}).then(function (canvas) {
+      modal.appendChild(canvas);
+    });
+    modal.classList.remove("d-none")
   }
 }
