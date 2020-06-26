@@ -17,29 +17,30 @@ body{
   margin-bottom:2rem;
 }
 
-
-
 .display{
 margin: auto;
 background-position:center;
 background-repeat: no-repeat;
 background-color:black;
 display:flex;
-justify-content:center;
 box-shadow: 7px 7px;
 }
+
 .cover{
   background-size: cover;
 }
 .contain{
   background-size: contain;
 }
+.width-65{
+  width:65%;
+}
 
 .meme-text{
 margin:1rem;
 }
 .align-left{
-flex-direction:row;
+justify-content:left;
 }
 .align-right{
 flex-direction:row-reverse;
@@ -48,7 +49,7 @@ flex-direction:row-reverse;
 flex-direction:column;
 }
 .align-center{
-  justify-content:center;
+justify-content:center;
 }
 .align-bottom{
 flex-direction:column-reverse;
@@ -56,6 +57,15 @@ flex-direction:column-reverse;
 
 .center-text{
   text-align: center;
+}
+.left-text{
+  text-align: left;
+}
+.right-text{
+  text-align: right;
+}
+.justify-text{
+  text-align: justify;
 }
 
 .white-text{
@@ -107,11 +117,13 @@ flex-direction:column-reverse;
     height:100%;
     min-height:600px;
   }
-
+  .row > .btn{
+    margin:3px 0;
+  }
 }
 
 @media (max-width:500px){
-    .display{
+  .display{
     width:99%;
     min-height:400px;
   }
@@ -119,23 +131,26 @@ flex-direction:column-reverse;
     height:100%;
     min-height:600px;
   }
-    .title{
+  .title{
     margin-top:0;
 }
   .credit-row{
-  margin-bottom: 1rem;
-  justify-content: center;
+    margin-bottom: 1rem;
+    justify-content: center;
 }
-.button-row, .text-row, .customize-row,.image-row,.position-row{
-  margin-bottom:1rem;
+  .button-row, .text-row, .customize-row,.image-row,.position-row{
+    margin-bottom:1rem;
 }
-.small{
-  font-size: 1.5rem;
+  .row > .btn{
+    margin:3px 0;
 }
-.medium{
-  font-size: 1.75rem;
+  .small{
+    font-size: 1.5rem;
 }
-.large{
-  font-size: 2rem;
+  .medium{
+    font-size: 1.75rem;
+}
+  .large{
+    font-size: 2rem;
 }
 }

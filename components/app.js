@@ -41,22 +41,26 @@ class App{
     const customizeTextButton = this.buttonsContainer.querySelector("#custom-text");
     customizeTextButton.addEventListener("click",this.customizeText);
     const textLocationButton = this.buttonsContainer.querySelector("#text-location");
-    //textLocationButton.addEventListener("click");
+    textLocationButton.addEventListener("click", this.textLocation);
     // back buttons for all rows
     const backButton = document.createElement("button");
     backButton.className = "btn btn-success";
     const imageBack = backButton.cloneNode();
     const textBack = backButton.cloneNode();
     const customizeBack = backButton.cloneNode();
+    const locationBack = backButton.cloneNode();
     imageBack.textContent = "Go Back";
     textBack.textContent = "Go Back";
     customizeBack.textContent = "Go Back";
+    locationBack.textContent = "Go Back";
     imageBack.addEventListener("click", this.toggleTopRow);
     textBack.addEventListener("click",this.toggleTopRow);
     customizeBack.addEventListener("click",this.toggleTopRow);
+    locationBack.addEventListener("click",this.toggleTopRow);
     this.imageRow.appendChild(imageBack);
     this.textRow.appendChild(textBack);
     this.customizeRow.appendChild(customizeBack);
+    this.positionRow.appendChild(locationBack);
     //set the image row buttons
     const animeButton = document.createElement("button");
     const abstractButton = document.createElement("button");
@@ -81,14 +85,10 @@ class App{
     // set the text row buttons
     const adviceButton = document.createElement("button");
     const customButton = document.createElement("button");
-    const positionButton =document.createElement("button");
     const customText = document.createElement("input");
-    positionButton.textContent = "Change Text Position";
-    positionButton.className = "btn btn-info";
-    positionButton.addEventListener("click",this.textHandler.toggleBottomPosition);
     customText.placeholder = "Type your custom text here!";
     customText.id = "text-input";
-    customText.className = "w-50";
+    customText.className = "width-65";
     adviceButton.className = "btn btn-dark";
     adviceButton.textContent = "Use Advice";
     customButton.className = "btn btn-warning";
@@ -96,7 +96,6 @@ class App{
     adviceButton.addEventListener("click", this.textHandler.newAdviceText);
     customButton.addEventListener("click",this.submitCustomText);
     this.textRow.appendChild(adviceButton);
-    this.textRow.appendChild(positionButton);
     this.textRow.appendChild(customText);
     this.textRow.appendChild(customButton);
     //set the customize text row buttons
@@ -125,6 +124,28 @@ class App{
     this.customizeRow.appendChild(pureWhiteButton);
     this.customizeRow.appendChild(pureBlackButton);
     this.customizeRow.appendChild(sizeButton);
+    //set the buttons for position row
+    const verticalButton = document.createElement("button");
+    const horizontalButton = document.createElement("button");
+    const resetButton = document.createElement("button");
+    const textAlignButton = document.createElement("button");
+    horizontalButton.textContent = "Set Text Horizontal Position";
+    verticalButton.textContent = "Change Text Vertical Position";
+    resetButton.textContent = "Reset"
+    textAlignButton.textContent = "Change Text Alignment"
+    verticalButton.className = "btn btn-dark"
+    horizontalButton.className = "btn btn-dark"
+    resetButton.className = "btn btn-danger"
+    textAlignButton.className = "btn btn-info"
+    verticalButton.addEventListener("click",this.textHandler.toggleVerticalPosition);
+    horizontalButton.addEventListener("click",this.textHandler.toggleHorizontalPosition);
+    resetButton.addEventListener("click",this.textHandler.resetPosition);
+    textAlignButton.addEventListener("click".this.textHandler.toggleTextAlignment);
+    this.positionRow.appendChild(verticalButton);
+    this.positionRow.appendChild(horizontalButton);
+    this.positionRow.appendChild(textAlignButton);
+    this.positionRow.appendChild(resetButton);
+
   }
 
   changeImage(){ //replaces main row with the image row buttons
@@ -144,7 +165,7 @@ class App{
 
   textLocation(){
     this.toggleTopRow();
-    this.locationRow.classList.remove("d-none");
+    this.positionRow.classList.remove("d-none");
   }
 
   toggleTopRow(){
@@ -156,7 +177,7 @@ class App{
       if (!this.imageRow.classList.contains("d-none")) this.imageRow.classList.add("d-none")
       if (!this.textRow.classList.contains("d-none")) this.textRow.classList.add("d-none")
       if (!this.customizeRow.classList.contains("d-none")) this.customizeRow.classList.add("d-none")
-
+      if (!this.positionRow.classList.contains("d-none")) this.positionRow.classList.add("d-none")
     } else{
       this.buttonRow.classList.add("d-none");
     }
