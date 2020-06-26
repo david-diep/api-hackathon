@@ -1,6 +1,7 @@
 body{
   background-color:lightgray;
 }
+
 #image-display{
   width:90%;
   height:80%;
@@ -53,7 +54,7 @@ display:flex;
 }
 
 .meme-text{
-margin:1rem;
+padding:.6rem 1.2rem;
 }
 .align-left{
 justify-content:left;

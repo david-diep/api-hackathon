@@ -147,14 +147,14 @@ class App{
     const horizontalButton = document.createElement("button");
     const resetButton = document.createElement("button");
     const textAlignButton = document.createElement("button");
-    horizontalButton.textContent = "Set Text Horizontal Position";
+    horizontalButton.textContent = "Change Text Horizontal Position";
     verticalButton.textContent = "Change Text Vertical Position";
     resetButton.textContent = "Reset"
     textAlignButton.textContent = "Change Text Alignment"
     verticalButton.className = "btn btn-dark"
     horizontalButton.className = "btn btn-dark"
     resetButton.className = "btn btn-danger"
-    textAlignButton.className = "btn btn-info"
+    textAlignButton.className = "btn btn-dark"
     verticalButton.addEventListener("click",this.textHandler.toggleVerticalPosition);
     horizontalButton.addEventListener("click",this.textHandler.toggleHorizontalPosition);
     resetButton.addEventListener("click",this.textHandler.resetPosition);
@@ -210,7 +210,6 @@ class App{
   submitCustomTag(){
     const tagInput = this.buttonsContainer.querySelector("#tag-input");
     this.imageHandler.newCustomImage(tagInput.value);
-    tagInput.value = "";
   }
   clearModal() {
     const modal = document.querySelector("#image-display");
