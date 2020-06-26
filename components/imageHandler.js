@@ -8,9 +8,9 @@ class ImageHandler{
     this.newArtImage = this.newArtImage.bind(this);
     this.newAnimeImage = this.newAnimeImage.bind(this);
     this.toggleCoverContain = this.toggleCoverContain.bind(this);
-    this.frontURL = "https://api.giphy.com/v1/gifs/random?api_key=CNytBS8UgzfMHNmmTQPrTwE31S88tvGC"
-    this.takeScreenshot = this.takeScreenshot.bind(this)
-
+    this.frontURL = "https://api.giphy.com/v1/gifs/random?api_key=CNytBS8UgzfMHNmmTQPrTwE31S88tvGC";
+    this.takeScreenshot = this.takeScreenshot.bind(this);
+    this.newCustomImage = this.newCustomImage.bind(this);
   }
 
   newImage(givenURL){
@@ -41,6 +41,11 @@ class ImageHandler{
 
   newAnimeImage(){
     const url = this.frontURL + "&tag=anime&rating=PG";
+    this.newImage(url);
+  }
+
+  newCustomImage(tag){
+    const url = this.frontURL + `&tag=${tag}&rating=PG`;
     this.newImage(url);
   }
 

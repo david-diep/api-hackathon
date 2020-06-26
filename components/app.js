@@ -18,6 +18,7 @@ class App{
     this.submitCustomText = this.submitCustomText.bind(this);
     this.textLocation = this.textLocation.bind(this);
     this.clearModal = this.clearModal.bind(this);
+    this.submitCustomTag = this.submitCustomTag.bind(this);
   }
 
   start(){
@@ -30,11 +31,7 @@ class App{
     this.imageHandler.newAbstractImage();
     this.textHandler.newAdviceText();
   }
-  clearModal(){
-    const modal = document.querySelector("#image-display");
-    modal.classList.add("d-none");
-    modal.removeChild(modal.lastChild);
-  }
+
   setButtons(){
     //modal button
     const hideButton = document.querySelector("#modal-button")
@@ -78,6 +75,13 @@ class App{
     const abstractButton = document.createElement("button");
     const artButton = document.createElement("button");
     const toggleButton = document.createElement("button");
+    const customTagButton = document.createElement("button");
+    const customTagLine = document.createElement("input");
+    customTagButton.className = "btn btn-warning";
+    customTagButton.textContent = "Custom Gif"
+    customTagButton.addEventListener("click",this.submitCustomTag);
+    customTagLine.id="tag-input";
+    customTagLine.placeholder="Type Custom Tag Here";
     toggleButton.textContent = "Toggle GIF Fit";
     toggleButton.className = "btn btn-info";
     animeButton.className = "btn btn-dark";
@@ -93,6 +97,8 @@ class App{
     this.imageRow.appendChild(abstractButton);
     this.imageRow.appendChild(animeButton);
     this.imageRow.appendChild(artButton);
+    this.imageRow.appendChild(customTagLine);
+    this.imageRow.appendChild(customTagButton);
     this.imageRow.appendChild(toggleButton);
     // set the text row buttons
     const adviceButton = document.createElement("button");
@@ -198,8 +204,18 @@ class App{
   submitCustomText(){ //takes the value from the textline in change text row and uses it in the meme
     const textInput = this.buttonsContainer.querySelector("#text-input");
     this.textHandler.customText(textInput.value);
-    textInput.value =""
+    textInput.value = "";
   }
 
+  submitCustomTag(){
+    const tagInput = this.buttonsContainer.querySelector("#tag-input");
+    this.imageHandler.newCustomImage(tagInput.value);
+    tagInput.value = "";
+  }
+  clearModal() {
+    const modal = document.querySelector("#image-display");
+    modal.classList.add("d-none");
+    modal.removeChild(modal.lastChild);
+  }
 
 }
