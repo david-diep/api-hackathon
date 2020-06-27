@@ -33,6 +33,9 @@ class App{
   }
 
   setButtons(){
+    //button template
+    const blackButton = document.createElement("button");
+    blackButton.className = "btn btn-dark";
     //modal button
     const hideButton = document.querySelector("#modal-button")
     hideButton.addEventListener("click",this.clearModal);
@@ -54,14 +57,11 @@ class App{
     // back buttons for all rows
     const backButton = document.createElement("button");
     backButton.className = "btn btn-success";
-    const imageBack = backButton.cloneNode();
-    const textBack = backButton.cloneNode();
-    const customizeBack = backButton.cloneNode();
-    const locationBack = backButton.cloneNode();
-    imageBack.textContent = "Go Back";
-    textBack.textContent = "Go Back";
-    customizeBack.textContent = "Go Back";
-    locationBack.textContent = "Go Back";
+    backButton.textContent = "Go Back"
+    const imageBack = backButton.cloneNode(true);
+    const textBack = backButton.cloneNode(true);
+    const customizeBack = backButton.cloneNode(true);
+    const locationBack = backButton.cloneNode(true);
     imageBack.addEventListener("click", this.toggleTopRow);
     textBack.addEventListener("click",this.toggleTopRow);
     customizeBack.addEventListener("click",this.toggleTopRow);
@@ -71,9 +71,9 @@ class App{
     this.customizeRow.appendChild(customizeBack);
     this.positionRow.appendChild(locationBack);
     //set the image row buttons
-    const animeButton = document.createElement("button");
-    const abstractButton = document.createElement("button");
-    const artButton = document.createElement("button");
+    const animeButton = blackButton.cloneNode();
+    const abstractButton = blackButton.cloneNode();
+    const artButton = blackButton.cloneNode();
     const toggleButton = document.createElement("button");
     const customTagButton = document.createElement("button");
     const customTagLine = document.createElement("input");
@@ -84,11 +84,8 @@ class App{
     customTagLine.placeholder="Type Custom Tag Here";
     toggleButton.textContent = "Toggle GIF Fit";
     toggleButton.className = "btn btn-info";
-    animeButton.className = "btn btn-dark";
     animeButton.textContent = "Anime GIF";
-    abstractButton.className = "btn btn-dark";
     abstractButton.textContent = "Abstract GIF";
-    artButton.className = "btn btn-dark";
     artButton.textContent = "Art GIF";
     animeButton.addEventListener("click", this.imageHandler.newAnimeImage);
     abstractButton.addEventListener("click", this.imageHandler.newAbstractImage);
@@ -101,13 +98,12 @@ class App{
     this.imageRow.appendChild(customTagButton);
     this.imageRow.appendChild(toggleButton);
     // set the text row buttons
-    const adviceButton = document.createElement("button");
+    const adviceButton = blackButton.cloneNode();
     const customButton = document.createElement("button");
     const customText = document.createElement("input");
     customText.placeholder = "Type your custom text here!";
     customText.id = "text-input";
     customText.className = "width-65";
-    adviceButton.className = "btn btn-dark";
     adviceButton.textContent = "Use Advice";
     customButton.className = "btn btn-warning";
     customButton.textContent = "Use Custom Text";
@@ -117,22 +113,18 @@ class App{
     this.textRow.appendChild(customText);
     this.textRow.appendChild(customButton);
     //set the customize text row buttons
-    const blackWhiteButton = document.createElement("button");
-    const whiteBlackButton = document.createElement("button");
-    const pureWhiteButton = document.createElement("button");
-    const pureBlackButton = document.createElement("button");
+    const blackWhiteButton = blackButton.cloneNode();
+    const whiteBlackButton = blackButton.cloneNode();
+    const pureWhiteButton = blackButton.cloneNode();
+    const pureBlackButton = blackButton.cloneNode();
     const sizeButton = document.createElement("button");
     blackWhiteButton.textContent = "Black Interior Text";
-    blackWhiteButton.className = "btn btn-dark";
     blackWhiteButton.addEventListener("click", this.textHandler.blackInterior);
     whiteBlackButton.textContent = "White Interior Text";
-    whiteBlackButton.className = "btn btn-dark";
     whiteBlackButton.addEventListener("click", this.textHandler.whiteInterior);
     pureWhiteButton.textContent = "White Only Text";
-    pureWhiteButton.className = "btn btn-dark";
     pureWhiteButton.addEventListener("click", this.textHandler.pureWhite);
     pureBlackButton.textContent = "Black Only Text";
-    pureBlackButton.className = "btn btn-dark";
     pureBlackButton.addEventListener("click", this.textHandler.pureBlack);
     sizeButton.textContent = "Change Size"
     sizeButton.className = "btn btn-info";
@@ -143,18 +135,15 @@ class App{
     this.customizeRow.appendChild(pureBlackButton);
     this.customizeRow.appendChild(sizeButton);
     //set the buttons for position row
-    const verticalButton = document.createElement("button");
-    const horizontalButton = document.createElement("button");
+    const verticalButton = blackButton.cloneNode();
+    const horizontalButton = blackButton.cloneNode();
     const resetButton = document.createElement("button");
-    const textAlignButton = document.createElement("button");
+    const textAlignButton = blackButton.cloneNode();
     horizontalButton.textContent = "Change Text Horizontal Position";
     verticalButton.textContent = "Change Text Vertical Position";
     resetButton.textContent = "Reset"
     textAlignButton.textContent = "Change Text Alignment"
-    verticalButton.className = "btn btn-dark"
-    horizontalButton.className = "btn btn-dark"
     resetButton.className = "btn btn-danger"
-    textAlignButton.className = "btn btn-dark"
     verticalButton.addEventListener("click",this.textHandler.toggleVerticalPosition);
     horizontalButton.addEventListener("click",this.textHandler.toggleHorizontalPosition);
     resetButton.addEventListener("click",this.textHandler.resetPosition);
