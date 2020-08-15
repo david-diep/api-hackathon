@@ -7,6 +7,7 @@ class App{
     this.imageRow = buttonsContainer.querySelector(".image-row");
     this.textRow = buttonsContainer.querySelector(".text-row");
     this.customizeRow = buttonsContainer.querySelector(".customize-row")
+    this.positionRow = buttonsContainer.querySelector(".position-row")
     this.start = this.start.bind(this);
     this.refresh = this.refresh.bind(this);
     this.setButtons = this.setButtons.bind(this);
@@ -15,6 +16,9 @@ class App{
     this.toggleTopRow = this.toggleTopRow.bind(this);
     this.customizeText = this.customizeText.bind(this);
     this.submitCustomText = this.submitCustomText.bind(this);
+    this.textLocation = this.textLocation.bind(this);
+    this.clearModal = this.clearModal.bind(this);
+    this.submitCustomTag = this.submitCustomTag.bind(this);
   }
 
   start(){
@@ -29,42 +33,59 @@ class App{
   }
 
   setButtons(){
+    //button template
+    const blackButton = document.createElement("button");
+    blackButton.className = "btn btn-dark";
+    //modal button
+    const hideButton = document.querySelector("#modal-button")
+    hideButton.addEventListener("click",this.clearModal);
+    hideButton.textContent ="Go Back";
+    hideButton.className = "btn btn-light"
     //set the buttons on the main row
-    var refresh = document.querySelector("#refresh");
+    const refresh = this.buttonsContainer.querySelector("#refresh");
     refresh.addEventListener("click",this.refresh);
-    var changeImageButton = document.querySelector("#change-image");
+    const changeImageButton = this.buttonsContainer.querySelector("#change-image");
     changeImageButton.addEventListener("click", this.changeImage);
-    var changeTextButton = document.querySelector("#change-text");
+    const changeTextButton = this.buttonsContainer.querySelector("#change-text");
     changeTextButton.addEventListener("click",this.changeText);
-    var customizeTextButton = document.querySelector("#custom-text");
+    const customizeTextButton = this.buttonsContainer.querySelector("#custom-text");
     customizeTextButton.addEventListener("click",this.customizeText);
+    const textLocationButton = this.buttonsContainer.querySelector("#text-location");
+    textLocationButton.addEventListener("click", this.textLocation);
+    const saveButton = this.buttonsContainer.querySelector("#save");
+    saveButton.addEventListener("click",this.imageHandler.takeScreenshot);
     // back buttons for all rows
-    var backButton = document.createElement("button");
+    const backButton = document.createElement("button");
     backButton.className = "btn btn-success";
-    var imageBack = backButton.cloneNode();
-    var textBack = backButton.cloneNode();
-    var customizeBack = backButton.cloneNode();
-    imageBack.textContent = "Go Back";
-    textBack.textContent = "Go Back";
-    customizeBack.textContent = "Go Back";
+    backButton.textContent = "Go Back"
+    const imageBack = backButton.cloneNode(true);
+    const textBack = backButton.cloneNode(true);
+    const customizeBack = backButton.cloneNode(true);
+    const locationBack = backButton.cloneNode(true);
     imageBack.addEventListener("click", this.toggleTopRow);
     textBack.addEventListener("click",this.toggleTopRow);
     customizeBack.addEventListener("click",this.toggleTopRow);
+    locationBack.addEventListener("click",this.toggleTopRow);
     this.imageRow.appendChild(imageBack);
     this.textRow.appendChild(textBack);
     this.customizeRow.appendChild(customizeBack);
+    this.positionRow.appendChild(locationBack);
     //set the image row buttons
-    var animeButton = document.createElement("button");
-    var abstractButton = document.createElement("button");
-    var artButton = document.createElement("button");
-    var toggleButton = document.createElement("button");
+    const animeButton = blackButton.cloneNode();
+    const abstractButton = blackButton.cloneNode();
+    const artButton = blackButton.cloneNode();
+    const toggleButton = document.createElement("button");
+    const customTagButton = document.createElement("button");
+    const customTagLine = document.createElement("input");
+    customTagButton.className = "btn btn-warning";
+    customTagButton.textContent = "Custom Gif"
+    customTagButton.addEventListener("click",this.submitCustomTag);
+    customTagLine.id="tag-input";
+    customTagLine.placeholder="Type Custom Tag Here";
     toggleButton.textContent = "Toggle GIF Fit";
     toggleButton.className = "btn btn-info";
-    animeButton.className = "btn btn-dark";
     animeButton.textContent = "Anime GIF";
-    abstractButton.className = "btn btn-dark";
     abstractButton.textContent = "Abstract GIF";
-    artButton.className = "btn btn-dark";
     artButton.textContent = "Art GIF";
     animeButton.addEventListener("click", this.imageHandler.newAnimeImage);
     abstractButton.addEventListener("click", this.imageHandler.newAbstractImage);
@@ -73,15 +94,16 @@ class App{
     this.imageRow.appendChild(abstractButton);
     this.imageRow.appendChild(animeButton);
     this.imageRow.appendChild(artButton);
+    this.imageRow.appendChild(customTagLine);
+    this.imageRow.appendChild(customTagButton);
     this.imageRow.appendChild(toggleButton);
     // set the text row buttons
-    var adviceButton = document.createElement("button");
-    var customButton = document.createElement("button");
-    var customText = document.createElement("input");
+    const adviceButton = blackButton.cloneNode();
+    const customButton = document.createElement("button");
+    const customText = document.createElement("input");
     customText.placeholder = "Type your custom text here!";
     customText.id = "text-input";
-    customText.className = "w-50";
-    adviceButton.className = "btn btn-dark";
+    customText.className = "width-65";
     adviceButton.textContent = "Use Advice";
     customButton.className = "btn btn-warning";
     customButton.textContent = "Use Custom Text";
@@ -91,22 +113,18 @@ class App{
     this.textRow.appendChild(customText);
     this.textRow.appendChild(customButton);
     //set the customize text row buttons
-    var blackWhiteButton = document.createElement("button");
-    var whiteBlackButton = document.createElement("button");
-    var pureWhiteButton = document.createElement("button");
-    var pureBlackButton = document.createElement("button");
-    var sizeButton = document.createElement("button");
+    const blackWhiteButton = blackButton.cloneNode();
+    const whiteBlackButton = blackButton.cloneNode();
+    const pureWhiteButton = blackButton.cloneNode();
+    const pureBlackButton = blackButton.cloneNode();
+    const sizeButton = document.createElement("button");
     blackWhiteButton.textContent = "Black Interior Text";
-    blackWhiteButton.className = "btn btn-dark";
     blackWhiteButton.addEventListener("click", this.textHandler.blackInterior);
     whiteBlackButton.textContent = "White Interior Text";
-    whiteBlackButton.className = "btn btn-dark";
     whiteBlackButton.addEventListener("click", this.textHandler.whiteInterior);
     pureWhiteButton.textContent = "White Only Text";
-    pureWhiteButton.className = "btn btn-dark";
     pureWhiteButton.addEventListener("click", this.textHandler.pureWhite);
     pureBlackButton.textContent = "Black Only Text";
-    pureBlackButton.className = "btn btn-dark";
     pureBlackButton.addEventListener("click", this.textHandler.pureBlack);
     sizeButton.textContent = "Change Size"
     sizeButton.className = "btn btn-info";
@@ -116,6 +134,25 @@ class App{
     this.customizeRow.appendChild(pureWhiteButton);
     this.customizeRow.appendChild(pureBlackButton);
     this.customizeRow.appendChild(sizeButton);
+    //set the buttons for position row
+    const verticalButton = blackButton.cloneNode();
+    const horizontalButton = blackButton.cloneNode();
+    const resetButton = document.createElement("button");
+    const textAlignButton = blackButton.cloneNode();
+    horizontalButton.textContent = "Change Text Horizontal Position";
+    verticalButton.textContent = "Change Text Vertical Position";
+    resetButton.textContent = "Reset"
+    textAlignButton.textContent = "Change Text Alignment"
+    resetButton.className = "btn btn-danger"
+    verticalButton.addEventListener("click",this.textHandler.toggleVerticalPosition);
+    horizontalButton.addEventListener("click",this.textHandler.toggleHorizontalPosition);
+    resetButton.addEventListener("click",this.textHandler.resetPosition);
+    textAlignButton.addEventListener("click",this.textHandler.toggleTextAlignment);
+    this.positionRow.appendChild(verticalButton);
+    this.positionRow.appendChild(horizontalButton);
+    this.positionRow.appendChild(textAlignButton);
+    this.positionRow.appendChild(resetButton);
+
   }
 
   changeImage(){ //replaces main row with the image row buttons
@@ -133,6 +170,11 @@ class App{
     this.customizeRow.classList.remove("d-none");
   }
 
+  textLocation(){
+    this.toggleTopRow();
+    this.positionRow.classList.remove("d-none");
+  }
+
   toggleTopRow(){
     //alternates between making the main buttons visible/invisible
     //and making the other buttons invisible
@@ -142,17 +184,26 @@ class App{
       if (!this.imageRow.classList.contains("d-none")) this.imageRow.classList.add("d-none")
       if (!this.textRow.classList.contains("d-none")) this.textRow.classList.add("d-none")
       if (!this.customizeRow.classList.contains("d-none")) this.customizeRow.classList.add("d-none")
-
+      if (!this.positionRow.classList.contains("d-none")) this.positionRow.classList.add("d-none")
     } else{
       this.buttonRow.classList.add("d-none");
     }
   }
 
   submitCustomText(){ //takes the value from the textline in change text row and uses it in the meme
-    var textInput = this.buttonsContainer.querySelector("#text-input");
+    const textInput = this.buttonsContainer.querySelector("#text-input");
     this.textHandler.customText(textInput.value);
-    textInput.value =""
+    textInput.value = "";
   }
 
+  submitCustomTag(){
+    const tagInput = this.buttonsContainer.querySelector("#tag-input");
+    this.imageHandler.newCustomImage(tagInput.value);
+  }
+  clearModal() {
+    const modal = document.querySelector("#image-display");
+    modal.classList.add("d-none");
+    modal.removeChild(modal.lastChild);
+  }
 
 }

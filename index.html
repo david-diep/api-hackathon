@@ -11,11 +11,18 @@
 </head>
 
 <body>
+
+<div id="image-display" class="d-none">
+  <div class="d-flex flex-row-reverse "><button id="modal-button"></button></div>
+</div>
+
 <div class="container">
-  <h1 class="title">Meme Generator
-    <img src="components/giphy.png">
-    <img src="components/advice-slip.png">
-  </h1>
+  <h1 class="title">Meme Generator</h1>
+  <div class="credit-row row">
+    <a href="https://developers.giphy.com/" target="_blank"><img src="components/giphy.png"></a>
+    <i class="fa fa-plus fa-2x white-text" aria-hidden="true"> </i> &nbsp;
+    <a href="https://api.adviceslip.com/" target="_blank"><img src="components/advice-slip.png"></a>
+  </div>
 
   <div class="buttons-container">
     <div class="row button-row">
@@ -23,30 +30,31 @@
       <button class="btn btn-secondary" id="change-image">Change Image</button>
       <button class="btn btn-secondary" id="change-text">Change Text</button>
       <button class="btn btn-secondary" id="custom-text">Customize Text</button>
+      <button class="btn btn-secondary" id="text-location">Change Text Location</button>
       <button class="btn btn-primary" id="save">Save</button>
     </div>
-    <div class="row bottom-row image-row d-none">
 
-    </div>
-    <div class="row bottom-row text-row d-none">
+    <div class="row image-row d-none"></div>
 
-    </div>
-    <div class="row bottom-row customize-row d-none">
+    <div class="row text-row d-none"> </div>
+
+    <div class="row customize-row d-none"></div>
+
+    <div class="row position-row d-none"></div>
+  </div>
+
+  <div class = "display border border-dark cover align-center">
+    <div class="text-field d-flex w-75 align-top">
+
+        <div class="meme-text white-text small center-text w-100"></div>
 
     </div>
   </div>
-
-  <div class = "display border border-dark cover">
-    <div class="text-field align-center">
-      <h2 class="meme-text white-text small"></h2>
-    </div>
-
-  </div>
-
 
 
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="components/imageHandler.js"></script>
   <script src="components/textHandler.js"></script>
   <script src ="components/app.js"></script>

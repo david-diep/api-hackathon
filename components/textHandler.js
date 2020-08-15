@@ -1,7 +1,8 @@
 class TextHandler {
   constructor(textElement) {
-    this.textElement = textElement;
+    this.textElement = textElement; //the display
     this.memeText = this.textElement.querySelector(".meme-text")
+    this.textField = this.textElement.querySelector(".text-field")
     this.newAdviceText = this.newAdviceText.bind(this);
     this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
@@ -11,6 +12,10 @@ class TextHandler {
     this.pureBlack = this.pureBlack.bind(this);
     this.blackInterior = this.blackInterior.bind(this);
     this.whiteInterior = this.whiteInterior.bind(this);
+    this.toggleVerticalPosition = this.toggleVerticalPosition.bind(this);
+    this.toggleHorizontalPosition = this.toggleHorizontalPosition.bind(this);
+    this.resetPosition = this.resetPosition.bind(this);
+    this.toggleTextAlignment = this.toggleTextAlignment.bind(this);
   }
   newAdviceText() {
     $.ajax({
@@ -30,10 +35,53 @@ class TextHandler {
   customText(string){
     this.memeText.textContent = string;
   }
+  toggleVerticalPosition(){
+    if (this.textField.classList.contains("align-center")) {
+      this.textField.classList.remove("align-center");
+      this.textField.classList.replace("align-top","align-bottom");
+    } else if (this.textField.classList.contains("align-bottom")) {
+      this.textField.classList.replace("align-bottom","align-top");
+    }  else {
+      this.textField.classList.add("align-center");
+
+    }
+  }
+  toggleHorizontalPosition(){
+    if (this.textElement.classList.contains("align-center")) {
+      this.textElement.classList.replace("align-center","align-left");
+    } else if (this.textElement.classList.contains("align-left")) {
+      this.textElement.classList.replace("align-left","align-right");
+    } else {
+      this.textElement.classList.replace("align-right","align-center");
+    }
+  }
+  resetPosition(){
+    //reset horizontal position
+    if (this.textElement.classList.contains("align-left")) this.textElement.classList.replace("align-left", "align-center");
+    if (this.textElement.classList.contains("align-right")) this.textElement.classList.replace("align-right", "align-center");
+    //reset vertical position
+    if (this.textField.classList.contains("align-center")) this.textField.classList.remove("align-center");
+    if (this.textField.classList.contains("align-bottom")) this.textField.classList.replace("align-bottom", "align-top");
+    //reset text alignment
+    if (this.memeText.classList.contains("left-text")) this.memeText.classList.replace("left-text","center-text")
+    if (this.memeText.classList.contains("right-text")) this.memeText.classList.replace("right-text", "center-text")
+  }
+  toggleTextAlignment(){
+    if(this.memeText.classList.contains("center-text")){
+      this.memeText.classList.replace("center-text","left-text");
+    } else if (this.memeText.classList.contains("left-text")) {
+      this.memeText.classList.replace("left-text", "right-text");
+    } else {
+      this.memeText.classList.replace("right-text", "center-text");
+    }
+  }
+
   toggleSize(){
     if (this.memeText.classList.contains("small")) {
-      this.memeText.classList.replace("small","large");
-    } else {
+      this.memeText.classList.replace("small","medium");
+    } else if (this.memeText.classList.contains("medium")){
+      this.memeText.classList.replace("medium", "large");
+    }else {
       this.memeText.classList.replace("large", "small");
     }
   }
