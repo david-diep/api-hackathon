@@ -13,4 +13,4 @@ Features of the Meme Generator:
 -User can change color scheme of text  
 -User can save a screenshot of the meme  
 
-Here's an example of what it looks like: ![alt text](https://imgur.com/a/9Xq34ah "Meme Generator") 
+Here's an example of what it looks like: ![Meme Generator](https://i.imgur.com/eQAzHl2.png "Meme Generator") 
