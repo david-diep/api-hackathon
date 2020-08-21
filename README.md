@@ -1,11 +1,20 @@
 # api-hackathon
 A hackathon project utlizing the data from two public APIs to create a meme generator.  
 
-Live Deployment: http://meme.david-diep.com/  
+## Live Site
+Try the live site here: http://meme.david-diep.com/  
 
-Technologies used: HTML, JavaScript, CSS, Ajax, APIs - Giphy & AdviceSlip, Bootstrap
+## Technologies Used 
+<li>Ajax</li>
+<li>Giphy API</li>
+<li>AdviceSlip API</li>
+<li>Bootstrap</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>HTML</li>
 
-Features of the Meme Generator:  
+## Main Features
+
 -User can refresh both gif and text of meme generated  
 -User can change image according to tag  
 -User can change text according to self input or AdviceSlip  
@@ -15,4 +24,5 @@ Features of the Meme Generator:
 
 Here's an example of what it looks like: ![Meme Generator](https://i.imgur.com/eQAzHl2.png "Meme Generator") 
 
-To open a local copy, clone the responsitory and launch the index.html file.
+## Getting Started
+To open a local copy, clone the repository and launch the index.html file.
