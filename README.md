@@ -25,4 +25,6 @@ Try the live site here: http://meme.david-diep.com/
 Here's an example of what it looks like: ![Meme Generator](https://i.imgur.com/eQAzHl2.png "Meme Generator") 
 
 ## Getting Started
-To open a local copy, clone the repository and launch the index.html file.
+To open a local copy, clone the repository and launch the index.html file.  
+
+  ```git clone https://github.com/david-diep/api-hackathon.git```
