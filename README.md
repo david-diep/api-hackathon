@@ -1,4 +1,4 @@
-# api-hackathon
+# meme-generator
 A hackathon project utlizing the data from two public APIs to create a meme generator.  
 
 ## Live Site
