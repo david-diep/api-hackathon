@@ -2,7 +2,7 @@
 A hackathon project utlizing the data from two public APIs to create a meme generator.
 
 ## Live Site
-Try the live site here: https://meme.david-diep.com/
+Try the live site here: https://meme.david-diep.com/  
 
 ## Technologies Used
 <li>Ajax</li>
