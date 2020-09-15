@@ -22,6 +22,7 @@ class ImageHandler{
       error: this.newImageError
     })
   }
+
   newImageSuccess(data){
     this.imageElement.style.backgroundImage = "url("+data.data.image_url+")";
   }
@@ -60,7 +61,7 @@ class ImageHandler{
 
   takeScreenshot(){
     const modal = document.querySelector("#image-display")
-    let print = html2canvas(this.imageElement, { allowTaint:true}).then(function (canvas) {
+    let print = html2canvas(this.imageElement, { allowTaint:true }).then(function (canvas) {
       modal.appendChild(canvas);
     });
     modal.classList.remove("d-none")

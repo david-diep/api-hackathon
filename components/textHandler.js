@@ -1,8 +1,10 @@
 class TextHandler {
+
   constructor(textElement) {
-    this.textElement = textElement; //the display
+    this.textElement = textElement;
     this.memeText = this.textElement.querySelector(".meme-text")
     this.textField = this.textElement.querySelector(".text-field")
+    this.cooldown = document.getElementById("cooldown");
     this.newAdviceText = this.newAdviceText.bind(this);
     this.newAdviceSuccess = this.newAdviceSuccess.bind(this);
     this.newTextError = this.newTextError.bind(this);
@@ -17,6 +19,7 @@ class TextHandler {
     this.resetPosition = this.resetPosition.bind(this);
     this.toggleTextAlignment = this.toggleTextAlignment.bind(this);
   }
+
   newAdviceText() {
     $.ajax({
       method: "GET",
@@ -25,16 +28,20 @@ class TextHandler {
       error: this.newTextError
     })
   }
+
   newAdviceSuccess(data) {
     const advice = JSON.parse(data).slip.advice;
     this.memeText.textContent = advice;
   }
+
   newTextError(error) {
     console.log(error);
   }
+
   customText(string){
     this.memeText.textContent = string;
   }
+
   toggleVerticalPosition(){
     if (this.textField.classList.contains("align-center")) {
       this.textField.classList.remove("align-center");
@@ -46,6 +53,7 @@ class TextHandler {
 
     }
   }
+
   toggleHorizontalPosition(){
     if (this.textElement.classList.contains("align-center")) {
       this.textElement.classList.replace("align-center","align-left");
@@ -55,6 +63,7 @@ class TextHandler {
       this.textElement.classList.replace("align-right","align-center");
     }
   }
+
   resetPosition(){
     //reset horizontal position
     if (this.textElement.classList.contains("align-left")) this.textElement.classList.replace("align-left", "align-center");
@@ -66,6 +75,7 @@ class TextHandler {
     if (this.memeText.classList.contains("left-text")) this.memeText.classList.replace("left-text","center-text")
     if (this.memeText.classList.contains("right-text")) this.memeText.classList.replace("right-text", "center-text")
   }
+
   toggleTextAlignment(){
     if(this.memeText.classList.contains("center-text")){
       this.memeText.classList.replace("center-text","left-text");
@@ -85,22 +95,27 @@ class TextHandler {
       this.memeText.classList.replace("large", "small");
     }
   }
+
   pureWhite(){
     this.clearColor();
     this.memeText.classList.add("pure-white-text");
   }
+
   pureBlack(){
     this.clearColor();
     this.memeText.classList.add("pure-black-text");
   }
+
   blackInterior(){
     this.clearColor();
     this.memeText.classList.add("black-text");
   }
+
   whiteInterior(){
     this.clearColor();
     this.memeText.classList.add("white-text");
   }
+
   clearColor(){
     const colorList=["white-text","black-text","pure-black-text","pure-white-text"];
     for(let i=0;i<colorList.length;i++){
